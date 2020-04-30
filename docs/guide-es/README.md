@@ -27,5 +27,5 @@ Estructura
 Temas adicionales
 -----------------
 
-* [Creando enlaces del backend al frontend](topic-link-backend-frontend.md)
+* [Creando enlaces del api al frontend](topic-link-api-frontend.md)
 * [Añadiendo más aplicaciones](topic-adding-more-apps.md)

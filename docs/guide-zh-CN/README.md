@@ -28,6 +28,6 @@ Yii 2高级项目模板是一个最基本的 [Yii 2](http://www.yiiframework.com
 其他
 ----
 
-* [创建从后端到前端的链接](topic-link-backend-frontend.md)
+* [创建从后端到前端的链接](topic-link-api-frontend.md)
 * [添加更多应用程序](topic-adding-more-apps.md)
 * [在共享主机上使用高级项目模板](topic-shared-hosting.md)

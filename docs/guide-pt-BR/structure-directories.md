@@ -3,7 +3,7 @@ Diretórios
 
 O diretório raiz contém os seguintes subdiretórios:
 
-- `backend` - [aplicação web backend](structure-applications.md).
+- `api` - [aplicação web api](structure-applications.md).
 - `common` - [arquivos comuns para todas as aplicações](structure-applications.md).
 - `console` - [aplicação de console](structure-applications.md).
 - `environments` - [configurações de ambiente](structure-environments.md).

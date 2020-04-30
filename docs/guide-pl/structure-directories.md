@@ -3,7 +3,7 @@ Foldery
 
 Główny folder zawiera następujące podfoldery:
 
-- `backend` - [aplikacja web back-end](structure-applications.md).
+- `api` - [aplikacja web back-end](structure-applications.md).
 - `common` - [pliki wspólne dla wszystkich aplikacji](structure-applications.md).
 - `console` - [aplikacja konsoli](structure-applications.md).
 - `environments` - [konfiguracje środowisk](structure-environments.md).

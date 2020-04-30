@@ -2,7 +2,7 @@ Uruchamianie testów
 ===================
 
 Zaawansowana aplikacji Yii 2 korzysta z Codeception jako głównego frameworka testowego. 
-Kilka przygotowanych przykładowych testów można znaleźć w folderze `tests` w `frontend`, `backend` i `common`.
+Kilka przygotowanych przykładowych testów można znaleźć w folderze `tests` w `frontend`, `api` i `common`.
 Poniżej opisana procedura zakłada, że aplikacja została zainicjowana dla środowiska `dev`. W przypadku testowania 
 środowiska `Production` należy ręcznie skopiować pliki `yii_test` i `yii_test.bat` z folderu `environments/dev` do 
 głównego folderu projektu.
@@ -113,5 +113,5 @@ Aby przeprowadzić testy akceptacyjne, wykonaj następujące kroki:
 Aplikacja back-end zawiera testy jednostkowe i funkcjonalne. Uruchomisz je za pomocą:
 
 ```
-vendor/bin/codecept run -- -c backend
+vendor/bin/codecept run -- -c api
 ```

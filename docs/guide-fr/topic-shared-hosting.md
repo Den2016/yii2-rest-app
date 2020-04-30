@@ -9,7 +9,7 @@ En premier lieu, il faut un dossier qui serve de racine Web. Créez un nouveau d
 ```
 www
     admin
-backend
+api
 common
 console
 environments
@@ -17,16 +17,16 @@ frontend
 ...
 ```
 
-`www` sera notre dossier de l'interface utilisateur, c'est pourquoi il faut déplacer le contenu de `frontend/web` dedans. Déplacez le contenu de `backend/web` dans `www/admin`. Dans les deux cas, vous devez adapter les chemins dans `index.php` et `index-test.php`.
+`www` sera notre dossier de l'interface utilisateur, c'est pourquoi il faut déplacer le contenu de `frontend/web` dedans. Déplacez le contenu de `api/web` dans `www/admin`. Dans les deux cas, vous devez adapter les chemins dans `index.php` et `index-test.php`.
 
 ### Adaptez les sessions et les témoins de connexion (cookies)
 
-À l'origine l'interface d'administration et l'interface utilisateur sont prévues pour s'exécuter dans des domaines différents. Lorsqu'on les rassemble dans le même domaine, elles vont partager les mêmes témoins de connexion, ce qui crée une collision. Pour régler cela, adaptez la configuration de  l'interface d'administration `backend/config/main.php` comme suit :
+À l'origine l'interface d'administration et l'interface utilisateur sont prévues pour s'exécuter dans des domaines différents. Lorsqu'on les rassemble dans le même domaine, elles vont partager les mêmes témoins de connexion, ce qui crée une collision. Pour régler cela, adaptez la configuration de  l'interface d'administration `api/config/main.php` comme suit :
 
 ```php
 'components' => [
     'request' => [
-        'csrfParam' => '_csrf-backend',
+        'csrfParam' => '_csrf-api',
         'csrfCookie' => [
             'httpOnly' => true,
             'path' => '/admin',
@@ -36,14 +36,14 @@ frontend
         'identityClass' => 'common\models\User',
         'enableAutoLogin' => true,
         'identityCookie' => [
-            'name' => '_identity-backend',
+            'name' => '_identity-api',
             'path' => '/admin',
             'httpOnly' => true,
         ],
     ],
     'session' => [
         // ceci est le mom du témoin de connexion de session utilisé pour la connexion à l'interface d'administration
-        'name' => 'advanced-backend',
+        'name' => 'advanced-api',
         'cookieParams' => [
             'path' => '/admin',
         ],

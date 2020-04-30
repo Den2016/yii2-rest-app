@@ -31,6 +31,6 @@ Struktura
 Dodatkowe tematy
 ----------------
 
-* [Tworzenie linków pomiędzy back-endem i front-endem](topic-link-backend-frontend.md)
+* [Tworzenie linków pomiędzy back-endem i front-endem](topic-link-api-frontend.md)
 * [Dodawanie kolejnych aplikacji](topic-adding-more-apps.md)
 * [Korzystanie z zaawansowanego szablonu projektu w środowisku współdzielonym](topic-shared-hosting.md)

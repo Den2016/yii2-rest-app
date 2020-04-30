@@ -15,7 +15,7 @@ nazwą hostingowego folderu web, dodanego przed chwilą (zmień ją, jeśli Twó
 ```
 www
     admin
-backend
+api
 common
 console
 environments
@@ -24,19 +24,19 @@ frontend
 ```
 
 `www` będzie naszym nowym folderem front-endowym, zatem przenieś do niego zawartość `frontend/web`. Zawartość folderu 
-`backend/web` przenieś za to do `www/admin`. W obu przypadkach będziesz musiał poprawić ścieżki podane w `index.php` 
+`api/web` przenieś za to do `www/admin`. W obu przypadkach będziesz musiał poprawić ścieżki podane w `index.php` 
 i `index-test.php`.
 
 ### Dopasuj ustawienia sesji i ciasteczek
 
 Standardowo back-end i front-end stworzone zostały do pracy na różnych domenach. Po przeniesieniu ich do tej samej 
 domeny, aplikacje będą współdzielić ciasteczka, co doprowadzi do konfliktu. Aby temu przeciwdziałać, zmodyfikuj konfigurację 
-aplikacji back-end w pliku `backend/config/main.php` następująco:
+aplikacji back-end w pliku `api/config/main.php` następująco:
 
 ```php
 'components' => [
     'request' => [
-        'csrfParam' => '_csrf-backend',
+        'csrfParam' => '_csrf-api',
         'csrfCookie' => [
             'httpOnly' => true,
             'path' => '/admin',
@@ -46,14 +46,14 @@ aplikacji back-end w pliku `backend/config/main.php` następująco:
         'identityClass' => 'common\models\User',
         'enableAutoLogin' => true,
         'identityCookie' => [
-            'name' => '_identity-backend',
+            'name' => '_identity-api',
             'path' => '/admin',
             'httpOnly' => true,
         ],
     ],
     'session' => [
         // to jest nazwa ciasteczka sesji używanego do logowania się na back-endzie
-        'name' => 'advanced-backend',
+        'name' => 'advanced-api',
         'cookieParams' => [
             'path' => '/admin',
         ],

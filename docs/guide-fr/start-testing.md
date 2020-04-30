@@ -1,7 +1,7 @@
 Tests
 ===============================
 
-L'application avancée de Yii2 utilise Codeception en tant que structure de base de test primaire. Il existe déjà quelques échantillons de tests préparés dans le dossier `tests` des dossiers `frontend`, `backend` et `common`. Pour que la procédure suivante fonctionne, on suppose que l'application a été initialisée en utilisant l'environnement `dev`. Dans le cas où les tests doivent être exécutés dans l'environnement `production`, les fichiers `yii_test` et `yii_test.bat` doivent être copiés manuellement du dossier `environnements/dev` vers le dossier racine du projet. 
+L'application avancée de Yii2 utilise Codeception en tant que structure de base de test primaire. Il existe déjà quelques échantillons de tests préparés dans le dossier `tests` des dossiers `frontend`, `api` et `common`. Pour que la procédure suivante fonctionne, on suppose que l'application a été initialisée en utilisant l'environnement `dev`. Dans le cas où les tests doivent être exécutés dans l'environnement `production`, les fichiers `yii_test` et `yii_test.bat` doivent être copiés manuellement du dossier `environnements/dev` vers le dossier racine du projet. 
 Les tests nécessitent une **base de données additionnelle**, qui sera vidée entre les tests. Créez une base de données `yii2advanced_test` avec mysql (en accord avec la configuration dans `common/config/test.php`) et exécutez : 
 
 ```
@@ -97,10 +97,10 @@ Pour exécuter les tests d'acceptation suivez les étapes ci-dessous :
    vendor/bin/codecept run acceptance -- -c frontend
    ```
 
-## Interface d'administration (backend)
+## Interface d'administration (api)
 
 L'application *interface d'administration* contient les suites de tests unitaires et fonctionnels. Exécutez-les avec  :
 
 ```
-vendor/bin/codecept run -- -c backend
+vendor/bin/codecept run -- -c api
 ```

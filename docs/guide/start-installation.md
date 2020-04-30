@@ -51,7 +51,7 @@ the installed application. You only need to do these once for all.
 4. Set document roots of your web server:
 
    - for frontend `/path/to/yii-application/frontend/web/` and using the URL `http://frontend.test/`
-   - for backend `/path/to/yii-application/backend/web/` and using the URL `http://backend.test/`
+   - for api `/path/to/yii-application/api/web/` and using the URL `http://api.test/`
 
    For Apache it could be the following:
 
@@ -83,10 +83,10 @@ the installed application. You only need to do these once for all.
        </VirtualHost>
        
        <VirtualHost *:80>
-           ServerName backend.test
-           DocumentRoot "/path/to/yii-application/backend/web/"
+           ServerName api.test
+           DocumentRoot "/path/to/yii-application/api/web/"
            
-           <Directory "/path/to/yii-application/backend/web/">
+           <Directory "/path/to/yii-application/api/web/">
                # use mod_rewrite for pretty URL support
                RewriteEngine on
                # If a directory or a file exists, use the request directly
@@ -162,12 +162,12 @@ the installed application. You only need to do these once for all.
            listen 80; ## listen for ipv4
            #listen [::]:80 default_server ipv6only=on; ## listen for ipv6
        
-           server_name backend.test;
-           root        /path/to/yii-application/backend/web/;
+           server_name api.test;
+           root        /path/to/yii-application/api/web/;
            index       index.php;
        
-           access_log  /path/to/yii-application/log/backend-access.log;
-           error_log   /path/to/yii-application/log/backend-error.log;
+           access_log  /path/to/yii-application/log/api-access.log;
+           error_log   /path/to/yii-application/log/api-error.log;
        
            location / {
                # Redirect everything that isn't a real file to index.php
@@ -208,14 +208,14 @@ the installed application. You only need to do these once for all.
 
    ```
    127.0.0.1   frontend.test
-   127.0.0.1   backend.test
+   127.0.0.1   api.test
    ```
 
 To login into the application, you need to first sign up, with any of your email address, username and password.
 Then, you can login into the application with same email address and password at any time.
 
 
-> Note: if you want to run advanced template on a single domain so `/` is frontend and `/admin` is backend, refer
+> Note: if you want to run advanced template on a single domain so `/` is frontend and `/admin` is api, refer
 > to [Using advanced project template at shared hosting](topic-shared-hosting.md).
 
 ## Installing using Vagrant
@@ -252,7 +252,7 @@ This way is the easiest but long (~20 min).
    
 That's all. You just need to wait for completion! After that you can access project locally by URLs:
 * frontend: http://y2aa-frontend.test
-* backend: http://y2aa-backend.test
+* api: http://y2aa-api.test
    
 #### Manual for Windows users
 
@@ -278,18 +278,18 @@ That's all. You just need to wait for completion! After that you can access proj
 
 That's all. You just need to wait for completion! After that you can access project locally by URLs:
 * frontend: http://y2aa-frontend.test
-* backend: http://y2aa-backend.test
+* api: http://y2aa-api.test
 
 
 ### Installing using Docker
 
 Install the application dependencies
 
-    docker-compose run --rm backend composer install
+    docker-compose run --rm api composer install
 
 Initialize the application by running the `init` command within a container
 
-    docker-compose run --rm backend php /app/init
+    docker-compose run --rm api php /app/init
 
 Adjust the components['db'] configuration in `common/config/main-local.php` accordingly.
     
@@ -297,7 +297,7 @@ Adjust the components['db'] configuration in `common/config/main-local.php` acco
         'username' => 'yii2advanced',
         'password' => 'secret',
 
-> Docker networking creates a DNS entry for the host `mysql` available from your `backend` and `frontend` containers.
+> Docker networking creates a DNS entry for the host `mysql` available from your `api` and `frontend` containers.
 
 > If you want to use another database, such a Postgres, uncomment the corresponding section in `docker-compose.yml` and update your database connection.
 
@@ -311,10 +311,10 @@ Start the application
 
 Run the migrations
 
-    docker-compose run --rm backend yii migrate          
+    docker-compose run --rm api yii migrate          
 
 Access it in your browser by opening
 
 - frontend: http://127.0.0.1:20080
-- backend: http://127.0.0.1:21080
+- api: http://127.0.0.1:21080
 

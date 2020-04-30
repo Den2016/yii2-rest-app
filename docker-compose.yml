@@ -12,8 +12,8 @@ services:
       # Mount source-code for development
       - ./:/app
 
-  backend:
-    build: backend
+  api:
+    build: api
     ports:
       - 21080:80
     volumes:

@@ -32,6 +32,6 @@ Yii 2 アドバンスト・プロジェクト・テンプレートは、複数�
 追加のトピック
 --------------
 
-* [バックエンドからフロントエンドへのリンクを作成する](topic-link-backend-frontend.md)
+* [バックエンドからフロントエンドへのリンクを作成する](topic-link-api-frontend.md)
 * [アプリケーションをさらに追加する](topic-adding-more-apps.md)
 * [共有ホスティング環境でアドバンスト・プロジェクト・テンプレートを使う](topic-shared-hosting.md)

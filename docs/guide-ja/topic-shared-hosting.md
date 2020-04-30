@@ -14,7 +14,7 @@
 ```
 www
     admin
-backend
+api
 common
 console
 environments
@@ -23,18 +23,18 @@ frontend
 ```
 
 `www` が私たちのフロントエンドのディレクトリになりますので、`frontend/web` のコンテンツをこの中に移動します。
-`backend/web` のコンテンツは `www/admin` に移動します。 どちらの場合も、index.php および index-test.php の中のパスを修正する必要があります。
+`api/web` のコンテンツは `www/admin` に移動します。 どちらの場合も、index.php および index-test.php の中のパスを修正する必要があります。
 
 ### セッションとクッキーを修正する
 
 元来は、バックエンドとフロントエンドは異なるドメインで走ることを意図されています。
 両方を同じドメインに移動すると、フロントエンドとバックエンドが同じクッキーを共有して、衝突することになります。
-この障害を修正するために、バックエンドのアプリケーション構成 backend/config/main.php を以下のように修正します。
+この障害を修正するために、バックエンドのアプリケーション構成 api/config/main.php を以下のように修正します。
 
 ```php
 'components' => [
     'request' => [
-        'csrfParam' => '_csrf-backend',
+        'csrfParam' => '_csrf-api',
         'csrfCookie' => [
             'httpOnly' => true,
             'path' => '/admin',
@@ -44,14 +44,14 @@ frontend
         'identityClass' => 'common\models\User',
         'enableAutoLogin' => true,
         'identityCookie' => [
-            'name' => '_identity-backend',
+            'name' => '_identity-api',
             'path' => '/admin',
             'httpOnly' => true,
         ],
     ],
     'session' => [
         // これがバックエンドへのログインに使用されるセッション・クッキーの名前
-        'name' => 'advanced-backend',
+        'name' => 'advanced-api',
         'cookieParams' => [
             'path' => '/admin',
         ],

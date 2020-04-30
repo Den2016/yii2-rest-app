@@ -5,7 +5,7 @@ Aliases de caminho predefinidos
 - `@app` - caminho base da aplicação sendo executada.
 - `@common` - diretório "common".
 - `@frontend` - diretório da aplicação web frontend.
-- `@backend` - diretório da aplicação web backend.
+- `@api` - diretório da aplicação web api.
 - `@console` - diretório "console".
 - `@runtime` - diretório "runtime" da aplicação sendo executada.
 - `@vendor` - diretório vendor do Composer.

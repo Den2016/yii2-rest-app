@@ -49,7 +49,7 @@ para inicializar a aplicação, sendo necessário realizá-los apenas uma vez no
 4. Configure a raiz dos documentos do seu servidor Web:
     
     - para o frontend `/caminho/para/aplicacao-yii/frontend/web/` usando URL `http://frontend.test/`
-    - para o backend `/caminho/para/aplicacao-yii/backend/web/` usando URL `http://backend.test/`
+    - para o api `/caminho/para/aplicacao-yii/api/web/` usando URL `http://api.test/`
     
     
     Exemplo de configuração para servidores Apache
@@ -76,10 +76,10 @@ para inicializar a aplicação, sendo necessário realizá-los apenas uma vez no
            </VirtualHost>
            
            <VirtualHost *:80>
-               ServerName backend.test
-               DocumentRoot "/caminho/para/aplicacao-yii/backend/web/"
+               ServerName api.test
+               DocumentRoot "/caminho/para/aplicacao-yii/api/web/"
                
-               <Directory "/caminho/para/aplicacao-yii/backend/web/">
+               <Directory "/caminho/para/aplicacao-yii/api/web/">
                    # Utilize o mod_rewrite para suporte a URL amigável
                    RewriteEngine on
                    # Se um diretório ou arquivo existe, usa a requisição diretamente
@@ -144,12 +144,12 @@ para inicializar a aplicação, sendo necessário realizá-los apenas uma vez no
                listen 80; ## listen for ipv4
                #listen [::]:80 default_server ipv6only=on; ## listen for ipv6
            
-               server_name backend.test;
-               root        /caminho/para/aplicacao-yii/backend/web/;
+               server_name api.test;
+               root        /caminho/para/aplicacao-yii/api/web/;
                index       index.php;
            
-               access_log  /caminho/para/aplicacao-yii/log/backend-access.log;
-               error_log   /caminho/para/aplicacao-yii/log/backend-error.log;
+               access_log  /caminho/para/aplicacao-yii/log/api-access.log;
+               error_log   /caminho/para/aplicacao-yii/log/api-error.log;
            
                location / {
                    # Redireciona tudo que não é um arquivo real para index.php
@@ -185,13 +185,13 @@ para inicializar a aplicação, sendo necessário realizá-los apenas uma vez no
    
    ```
    127.0.0.1   frontend.test
-   127.0.0.1   backend.test
+   127.0.0.1   api.test
    ```
    
 Para se autenticar na aplicação é necessário que primeiro, você se registre com qualquer um dos seus endereços de e-mail, usuário e senha.
 Então, você pode se autenticar na aplicação com o mesmo endereço de e-mail e senha a qualquer momento.
 
-> PS: caso queira que o template avançado de projetos utilize um único domínio, sendo `/` o frontend e `/admin` o backend, 
+> PS: caso queira que o template avançado de projetos utilize um único domínio, sendo `/` o frontend e `/admin` o api, 
 > consulte as [configurações e documentações por Oleg Belostotskiy](https://github.com/mickgeek/yii2-advanced-one-domain-config) (apenas inglês).
 
 ## Instalação utilizando Vagrant
@@ -229,7 +229,7 @@ Esta é a forma mais simples porém, mais demorada (~20 min).
    
 Isso é tudo. Basta aguardar a conclusão! Após isso você pode acessar o projeto localmente pelas URLs:
 * frontend: http://y2aa-frontend.test
-* backend: http://y2aa-backend.test
+* api: http://y2aa-api.test
 
 #### Manual para usuários Windows
 
@@ -248,7 +248,7 @@ Isso é tudo. Basta aguardar a conclusão! Após isso você pode acessar o proje
    
    ```
    192.168.83.137 y2aa-frontend.test
-   192.168.83.137 y2aa-backend.test
+   192.168.83.137 y2aa-api.test
    ```
    
 8. Abra o terminal (`cmd.exe`), **entre no diretório raiz do projeto** e execute os comandos:
@@ -262,5 +262,5 @@ Isso é tudo. Basta aguardar a conclusão! Após isso você pode acessar o proje
 
 Isso é tudo. Basta aguardar a conclusão! Após isso você pode acessar o projeto localmente pelas URLs:
 * frontend: http://y2aa-frontend.test
-* backend: http://y2aa-backend.test
+* api: http://y2aa-api.test
 

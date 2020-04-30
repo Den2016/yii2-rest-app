@@ -5,7 +5,7 @@
 - `@app` - 当前运行的应用程序的基本路径。
 - `@common` - 公共目录。
 - `@frontend` - 前端Web应用程序目录。
-- `@backend` - 后端Web应用程序目录。
+- `@api` - 后端Web应用程序目录。
 - `@console` - 控制台目录。
 - `@runtime` - 当前正在运行的Web应用程序的runtime目录。
 - `@vendor` - Composer vendor 目录.
@@ -15,4 +15,4 @@
 - `@webroot` - 当前运行的Web应用程序的web根目录。
 
 特定于高级应用程序的目录结构的别名
-(`@common`,  `@frontend`, `@backend`, 以及 `@console`) 在 `common/config/bootstrap.php` 文件中定义.
+(`@common`,  `@frontend`, `@api`, 以及 `@console`) 在 `common/config/bootstrap.php` 文件中定义.

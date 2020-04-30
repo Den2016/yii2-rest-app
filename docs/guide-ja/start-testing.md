@@ -2,7 +2,7 @@
 ======
 
 Yii2 アドバンスト・アプリケーションは Codeception を主たるテスト・フレームワークとして使用します。
-`frontend`、`backend` および `common` の `tests` ディレクトリに、既にいくつかのサンプル・テストが用意されています。
+`frontend`、`api` および `common` の `tests` ディレクトリに、既にいくつかのサンプル・テストが用意されています。
 下記の手順が動作するために、アプリケーションは `dev` 環境を使って初期化されているものとしています。
 テストを `Production` 環境で実行する必要がある場合は、`yii_test` と `yii_test.bat` が
 `environments/dev` からプロジェクトのルート・ディレクトリへ手作業でコピーされなければなりません。
@@ -118,5 +118,5 @@ vendor/bin/codecept run -- -c frontend
 バックエンド・アプリケーションは、単体テストと機能テストのスイートを含んでいます。下記によって、テスト・スイートを実行します。
 
 ```
-vendor/bin/codecept run -- -c backend
+vendor/bin/codecept run -- -c api
 ```

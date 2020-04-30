@@ -51,7 +51,7 @@ Bower と NPM の依存パッケージを Composer によって管理するた�
 4. ウェブ・サーバのドキュメント・ルートを設定します。
 
    - フロントエンドのパスは `/path/to/yii-application/frontend/web/`、URL は `http://frontend/` を使用
-   - バックエンドのパスは `/path/to/yii-application/backend/web/`、URL は `http://backend/` を使用
+   - バックエンドのパスは `/path/to/yii-application/api/web/`、URL は `http://api/` を使用
 
    Apache の場合は、次のように設定することが出来ます。
 
@@ -83,10 +83,10 @@ Bower と NPM の依存パッケージを Composer によって管理するた�
        </VirtualHost>
 
        <VirtualHost *:80>
-           ServerName backend.test
-           DocumentRoot "/path/to/yii-application/backend/web/"
+           ServerName api.test
+           DocumentRoot "/path/to/yii-application/api/web/"
            
-           <Directory "/path/to/yii-application/backend/web/">
+           <Directory "/path/to/yii-application/api/web/">
                # 綺麗な URL をサポートするために mod_rewrite を使用
                RewriteEngine on
                # ディレクトリまたはファイルがある場合は、リクエストを直接使用
@@ -162,12 +162,12 @@ Bower と NPM の依存パッケージを Composer によって管理するた�
            listen 80; ## listen for ipv4
            #listen [::]:80 default_server ipv6only=on; ## listen for ipv6
 
-           server_name backend.test;
-           root        /path/to/yii-application/backend/web/;
+           server_name api.test;
+           root        /path/to/yii-application/api/web/;
            index       index.php;
 
-           access_log  /path/to/yii-application/log/backend-access.log;
-           error_log   /path/to/yii-application/log/backend-error.log;
+           access_log  /path/to/yii-application/log/api-access.log;
+           error_log   /path/to/yii-application/log/api-error.log;
 
            location / {
                # 本当のファイルでないものは全て index.php にリダイレクト
@@ -208,7 +208,7 @@ Bower と NPM の依存パッケージを Composer によって管理するた�
 
    ```
    127.0.0.1   frontend.test
-   127.0.0.1   backend.test
+   127.0.0.1   api.test
    ```
 
 アプリケーションにログインするためには、最初にユーザ登録をする必要があります。あなたの任意のメール・アドレス、ユーザ名、パスワードを指定してください。
@@ -252,7 +252,7 @@ Bower と NPM の依存パッケージを Composer によって管理するた�
    
 これで全部です。後はただ完了するのを待つだけです。完了後には、次の URL でローカルのプロジェクトにアクセスすることが出来ます。
 * フロントエンド: http://y2aa-frontend.test
-* バックエンド: http://y2aa-backend.test
+* バックエンド: http://y2aa-api.test
    
 #### Windows ユーザ用マニュアル
 
@@ -278,18 +278,18 @@ Bower と NPM の依存パッケージを Composer によって管理するた�
 
 これで全部です。後はただ完了するのを待つだけです。完了後には、次の URL でローカルのプロジェクトにアクセスすることが出来ます。
 * フロントエンド: http://y2aa-frontend.test
-* バックエンド: http://y2aa-backend.test
+* バックエンド: http://y2aa-api.test
 
 
 ### Docker を使ってインストールする
 
 アプリケーションの依存をインストールします。
 
-    docker-compose run --rm backend composer install
+    docker-compose run --rm api composer install
 
 コンテナの中で `init` コマンドを実行することによってアプリケーションを初期化します。
 
-    docker-compose run --rm backend /app/init
+    docker-compose run --rm api /app/init
 
 好みのデータベース・サービスを追加して、それに合せて `common/config/main-local.php` の 'db' コンポーネントの構成を修正します。
     
@@ -297,7 +297,7 @@ Bower と NPM の依存パッケージを Composer によって管理するた�
         'username' => 'yii2advanced',
         'password' => 'secret',
 
-> Docker ネットワーキングが `backend` および `frontend` のコンテナから利用できる `mysql` というホストの DNS エントリを作成します。
+> Docker ネットワーキングが `api` および `frontend` のコンテナから利用できる `mysql` というホストの DNS エントリを作成します。
 
 > 別のデータベース、例えば Postgres を使いたい場合は、`docker-compose.yml` の対応するセクションのコメントを外して、データベース接続を更新して下さい。
 
@@ -307,7 +307,7 @@ Docker のセットアップに関する更なる詳細は [ガイド](http://ww
 
 マイグレーションを実行します。
 
-    docker-compose run --rm backend yii migrate
+    docker-compose run --rm api yii migrate
            
 アプリケーションを開始します。
 

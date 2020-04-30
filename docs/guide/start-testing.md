@@ -2,7 +2,7 @@ Testing
 ===============================
 
 Yii2 Advanced Application uses Codeception as its primary test framework. 
-There are already some sample tests prepared in `tests` directory of `frontend`, `backend`, and `common`.
+There are already some sample tests prepared in `tests` directory of `frontend`, `api`, and `common`.
 In order for the following procedure to work, it is assumed that the application has been initialized using
 the `dev` environment. In the case where tests need to be executed in a `Production` environment, `yii_test` and
 `yii_test.bat` must be manually copied from the `environments/dev` folder into the project root directory.
@@ -118,5 +118,5 @@ To execute acceptance tests do the following:
 Backend application contain unit and functional test suites. Execute them by running:
 
 ```
-vendor/bin/codecept run -- -c backend
+vendor/bin/codecept run -- -c api
 ```

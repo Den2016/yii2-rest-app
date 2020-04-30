@@ -3,7 +3,7 @@ Directories
 
 The root directory contains the following subdirectories:
 
-- `backend` - [backend web application](structure-applications.md).
+- `api` - [api web application](structure-applications.md).
 - `common` - [files common to all applications](structure-applications.md).
 - `console` - [console application](structure-applications.md).
 - `environments` - [environment configs](structure-environments.md).

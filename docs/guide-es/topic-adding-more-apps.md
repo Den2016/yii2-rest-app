@@ -1,7 +1,7 @@
 Añadiendo más aplicaciones
 ==========================
 
-si bien tener separado frontend y backend es común, algunas veces no es suficiente. Por ejemplo puedes necesitar una aplicación
+si bien tener separado frontend y api es común, algunas veces no es suficiente. Por ejemplo puedes necesitar una aplicación
 adicional para, digamos, un blog. En el orden de hacerlo:
 
 1. Copia `frontend` a `blog`, `environments/dev/frontend` a `environments/dev/blog` y `environments/prod/frontend`

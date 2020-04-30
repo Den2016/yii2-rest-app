@@ -1,14 +1,14 @@
-Creando enlaces desde el backend al fronted
+Creando enlaces desde el api al fronted
 ===========================================
 
-Frecuentemente se necesita crear enlaces de la aplicación backend a la aplicación frontend. Dado que la aplicación frontend puede contener sus propias
-reglas del gestor de URL puedes necesitar duplicarlo para la aplicación backend nombrandolo diferente:
+Frecuentemente se necesita crear enlaces de la aplicación api a la aplicación frontend. Dado que la aplicación frontend puede contener sus propias
+reglas del gestor de URL puedes necesitar duplicarlo para la aplicación api nombrandolo diferente:
 
 ```php
 return [
     'components' => [
         'urlManager' => [
-            // here is your normal backend url manager config
+            // here is your normal api url manager config
         ],
         'urlManagerFrontend' => [
             // here is your frontend URL manager config

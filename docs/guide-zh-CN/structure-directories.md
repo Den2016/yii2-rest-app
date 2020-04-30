@@ -3,7 +3,7 @@
 
 根目录包含以下子目录：
 
-- `backend` - [backend （后端应用）](structure-applications.md).
+- `api` - [api （后端应用）](structure-applications.md).
 - `common` - [common （所有应用程序共有的文件）](structure-applications.md).
 - `console` - [console （命令行应用）](structure-applications.md).
 - `environments` - [environment （环境配置）](structure-environments.md).

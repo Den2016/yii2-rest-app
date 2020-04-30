@@ -3,7 +3,7 @@
 
 ルート・ディレクトリは次のサブ・ディレクトリを含みます。
 
-- `backend` - [バックエンドのウェブ・アプリケーション](structure-applications.md)
+- `api` - [バックエンドのウェブ・アプリケーション](structure-applications.md)
 - `common` - [全てのアプリケーションに共通なファイル](structure-applications.md)
 - `console` - [コンソール・アプリケーション](structure-applications.md)
 - `environments` - [環境設定](structure-applications.md)

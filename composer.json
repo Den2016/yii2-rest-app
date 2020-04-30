@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "sizeg/yii2-jwt": "^2.0",
         "yiisoft/yii2-jui": "^2.0",
-        "la-haute-societe/yii2-save-relations-behavior": "*"
+        "la-haute-societe/yii2-save-relations-behavior": "*",
+        "ext-json": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

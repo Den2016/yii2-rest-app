@@ -10,7 +10,7 @@
 ```
 www
     admin
-backend
+api
 common
 console
 environments
@@ -18,16 +18,16 @@ frontend
 ...
 ```
 
-`www` 将是我们的前端目录，所以将 `frontend/web` 的内容移动到其中。 将 `backend/web` 的内容移动到 `www/admin`。 在每种情况下，您都需要调整 “index.php” 和 “index-test.php” 中的路径。
+`www` 将是我们的前端目录，所以将 `frontend/web` 的内容移动到其中。 将 `api/web` 的内容移动到 `www/admin`。 在每种情况下，您都需要调整 “index.php” 和 “index-test.php” 中的路径。
 
 ### 调整 sessions 和 cookies 的配置
 
-最初，后端和前端旨在运行在不同的域。 当我们将其全部移动到同一个域时，前端和后端将共享相同的Cookie，从而产生冲突。 为了解决它，请调整后端应用程序配置 `backend/config/main.php` 如下：
+最初，后端和前端旨在运行在不同的域。 当我们将其全部移动到同一个域时，前端和后端将共享相同的Cookie，从而产生冲突。 为了解决它，请调整后端应用程序配置 `api/config/main.php` 如下：
 
 ```php
 'components' => [
     'request' => [
-        'csrfParam' => '_csrf-backend',
+        'csrfParam' => '_csrf-api',
         'csrfCookie' => [
             'httpOnly' => true,
             'path' => '/admin',
@@ -37,14 +37,14 @@ frontend
         'identityClass' => 'common\models\User',
         'enableAutoLogin' => true,
         'identityCookie' => [
-            'name' => '_identity-backend',
+            'name' => '_identity-api',
             'path' => '/admin',
             'httpOnly' => true,
         ],
     ],
     'session' => [
-        // this is the name of the session cookie used for login on the backend
-        'name' => 'advanced-backend',
+        // this is the name of the session cookie used for login on the api
+        'name' => 'advanced-api',
         'cookieParams' => [
             'path' => '/admin',
         ],

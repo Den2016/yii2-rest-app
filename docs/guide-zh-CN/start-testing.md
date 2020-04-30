@@ -2,7 +2,7 @@
 ===============================
 
 Yii2高级应用程序使用Codeception作为其主要测试框架。
-已经在 `frontend` ， `backend` 和 `common` 的 `tests` 目录中准备了一些样本测试。
+已经在 `frontend` ， `api` 和 `common` 的 `tests` 目录中准备了一些样本测试。
 为了使以下过程工作，假定应用程序已使用初始化 `dev` 环境。 如果测试需要在 `Production` 环境中执行， `yii_test` 和 `yii_test.bat` 必须从 `environments/dev` 文件夹手动复制到项目根目录。
 测试需要一个 **额外的数据库** ，这将在测试之间清除。
 在mysql中创建数据库 `yii2advanced_test` （根据 `common/config/test.php` 中的配置）并执行：
@@ -106,5 +106,5 @@ vendor/bin/codecept run -- -c frontend
 后端应用程序包含单元和功能测试套件。 通过运行：
 
 ```
-vendor/bin/codecept run -- -c backend
+vendor/bin/codecept run -- -c api
 ```

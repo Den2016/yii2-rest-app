@@ -49,7 +49,7 @@ zrobić raz na każdym nowym środowisku.
 4. Ustaw docelowe foldery serwera Web:
 
    - dla front-endu `/path/to/yii-application/frontend/web/` z użyciem adresu URL `http://frontend.test/`
-   - dla back-endu `/path/to/yii-application/backend/web/` z użyciem adresu URL `http://backend.test/`
+   - dla back-endu `/path/to/yii-application/api/web/` z użyciem adresu URL `http://api.test/`
 
    W przypadku serwera Apache konfiguracja może wyglądać następująco:
 
@@ -81,10 +81,10 @@ zrobić raz na każdym nowym środowisku.
        </VirtualHost>
        
        <VirtualHost *:80>
-           ServerName backend.test
-           DocumentRoot "/path/to/yii-application/backend/web/"
+           ServerName api.test
+           DocumentRoot "/path/to/yii-application/api/web/"
            
-           <Directory "/path/to/yii-application/backend/web/">
+           <Directory "/path/to/yii-application/api/web/">
                # uruchom mod_rewrite dla obslugi 'ladnych' adresow URL
                RewriteEngine on
                # jesli folder lub plik istnieje, po prostu wywolaj go
@@ -160,12 +160,12 @@ zrobić raz na każdym nowym środowisku.
            listen 80; ## nasluchuj dla ipv4
            #listen [::]:80 default_server ipv6only=on; ## nasluchuj dla ipv6
        
-           server_name backend.test;
-           root        /path/to/yii-application/backend/web/;
+           server_name api.test;
+           root        /path/to/yii-application/api/web/;
            index       index.php;
        
-           access_log  /path/to/yii-application/log/backend-access.log;
-           error_log   /path/to/yii-application/log/backend-error.log;
+           access_log  /path/to/yii-application/log/api-access.log;
+           error_log   /path/to/yii-application/log/api-error.log;
        
            location / {
                # przekieruj wszystko, co nie jest rzeczywistym plikiem, na index.php
@@ -206,7 +206,7 @@ zrobić raz na każdym nowym środowisku.
 
    ```
    127.0.0.1   frontend.test
-   127.0.0.1   backend.test
+   127.0.0.1   api.test
    ```
 
 Aby zalogować się do aplikacji, najpierw musisz się zarejestrować używając dowolnego adresu email, nazwy użytkwnika 
@@ -254,7 +254,7 @@ wykonuj kolejne kroki!
 To wszystko. Teraz tylko musisz poczekać na zakończenie procesu! Po wszystkim możesz przejść do lokalnego projektu za 
 pomocą adresów URL:
 * front-end: http://y2aa-frontend.test
-* back-end: http://y2aa-backend.test
+* back-end: http://y2aa-api.test
    
 #### Instrukcje dla użytkowników Windows
 
@@ -273,7 +273,7 @@ pomocą adresów URL:
    
    ```
    192.168.83.137 y2aa-frontend.test
-   192.168.83.137 y2aa-backend.test
+   192.168.83.137 y2aa-api.test
    ```
 
 8. Otwórz terminal (`cmd.exe`), **zmień folder na folder główny projektu** i uruchom komendy:
@@ -288,4 +288,4 @@ pomocą adresów URL:
 To wszystko. Teraz tylko musisz poczekać na zakończenie procesu! Po wszystkim możesz przejść do lokalnego projektu za 
 pomocą adresów URL:
 * front-end: http://y2aa-frontend.test
-* back-end: http://y2aa-backend.test
+* back-end: http://y2aa-api.test

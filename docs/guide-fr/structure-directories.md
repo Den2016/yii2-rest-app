@@ -3,7 +3,7 @@ Dossiers
 
 Le dossier racine contient les sous-dossiers suivants :
 
-- `backend` - [application Web *interface d'administration* (*backend*) ](structure-applications.md).
+- `api` - [application Web *interface d'administration* (*api*) ](structure-applications.md).
 - `common` - [fichiers partagés entre les applications](structure-applications.md).
 - `console` - [application console](structure-applications.md).
 - `environments` - [configurations des environnements](structure-environments.md).

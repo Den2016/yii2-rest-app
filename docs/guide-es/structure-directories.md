@@ -3,7 +3,7 @@ Directorios
 
 El directorio raíz contiene los siguientes subdirectorios:
 
-- `backend` - aplicación web backend.
+- `api` - aplicación web api.
 - `common` - archivos comunes de todas las aplicaciones.
 - `console` - aplicación de consola.
 - `environments` - entornos de configuración.

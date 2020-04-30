@@ -7,7 +7,7 @@
 return [
     'components' => [
         'urlManager' => [
-            // here is your normal backend url manager config
+            // here is your normal api url manager config
         ],
         'urlManagerFrontend' => [
             // here is your frontend URL manager config

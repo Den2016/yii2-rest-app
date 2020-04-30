@@ -2,7 +2,7 @@ Pruebas (_testing_)
 ===============================
 
 Yii2 Aplicación avanzada utiliza Codeception como framework principal para pruebas.
-Existen algunas pruebas ejemplo dentro del directorio `tests` de los directorios `frontend`, `backend`, y `common`.
+Existen algunas pruebas ejemplo dentro del directorio `tests` de los directorios `frontend`, `api`, y `common`.
 Para que el siguiente procedimiento funcione, se asume que la aplicación ha sido inicializada utilizando
 el entorno `dev`. En caso de que las pruebas requieran ser ejecutadas en un entorno `Production`, `yii_test` y
 `yii_test.bat` deberán ser copiados manualmente desde el fólder `environments/dev` dentro del directorio raíz del proyecto.
@@ -118,8 +118,8 @@ Para ejecutar las pruebas de aceptación, haga lo siguiente:
 
 ## Backend
 
-La aplicación _backend_ contiene pruebas unitarias y funcionales. Ejecútelas con:
+La aplicación _api_ contiene pruebas unitarias y funcionales. Ejecútelas con:
 
 ```
-vendor/bin/codecept run -- -c backend
+vendor/bin/codecept run -- -c api
 ```

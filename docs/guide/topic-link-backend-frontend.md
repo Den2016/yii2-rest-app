@@ -1,14 +1,14 @@
-Creating links from backend to frontend
+Creating links from api to frontend
 =======================================
 
-Often it's required to create links from the backend application to the frontend application. Since the frontend application may
-contain its own URL manager rules you need to duplicate that for the backend application by naming it differently:
+Often it's required to create links from the api application to the frontend application. Since the frontend application may
+contain its own URL manager rules you need to duplicate that for the api application by naming it differently:
 
 ```php
 return [
     'components' => [
         'urlManager' => [
-            // here is your normal backend url manager config
+            // here is your normal api url manager config
         ],
         'urlManagerFrontend' => [
             // here is your frontend URL manager config
