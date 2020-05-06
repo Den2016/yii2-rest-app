@@ -1,6 +1,9 @@
 <?php
 
-use sizeg\jwt\JwtValidationData;
+use api\components\JwtValidationData;
+use sizeg\jwt\Jwt;
+use yii\helpers\ArrayHelper;
+use yii\web\Response;
 
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
@@ -17,12 +20,12 @@ return [
     'language' => 'ru-RU',
     'modules' => [],
     'components' => [
-//        'jwt' => [
-//            'class' => \sizeg\jwt\Jwt::class,
-//            'key' => 'supperpuppersecretfraza',
-//            // You have to configure ValidationData informing all claims you want to validate the token.
-//            'jwtValidationData' => JwtValidationData::class,
-//        ],
+        'jwt' => [
+            'class' => Jwt::class,
+            'key' => 'supperpuppersecretfraza',
+            // You have to configure ValidationData informing all claims you want to validate the token.
+            'jwtValidationData' => JwtValidationData::class,
+        ],
         'request' => [
             'csrfParam' => '_csrf-api',
             'parsers' => [
@@ -36,13 +39,16 @@ return [
                 if ($response->data !== null) {
                     $response->data = [
                         'success' => $response->isSuccessful,
+//                        'response' => get_object_vars($response),
                         'data' => $response->data,
+                        'statusCode' => $response->statusCode,
+                        'statusText' => ArrayHelper::getValue($response,'statusText'),
                     ];
-                    $response->statusCode = 200;
+                    //$response->statusCode = 200;
                 }
             },
             'formatters' => [
-                \yii\web\Response::FORMAT_JSON => [
+                Response::FORMAT_JSON => [
                     'class' => 'yii\web\JsonResponseFormatter',
                     'prettyPrint' => YII_DEBUG, // используем "pretty" в режиме отладки
                     'encodeOptions' => JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
@@ -72,22 +78,23 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'authManager' => [
-            'class' => 'yii\rbac\DbManager',
-            'cache' => 'cache' //Включаем кеширование
-        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',  // Подключаем файловое кэширование данных
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'enableStrictParsing' => true,
+            //'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'user',
-                    //'pluralize' => false,
+                    'pluralize' => true,
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'login',
+                    'pluralize' => false,
                 ],
             ],
         ],

@@ -16,6 +16,7 @@ $params = getParams();
 $root = str_replace('\\', '/', __DIR__);
 $envs = require "$root/environments/index.php";
 $envNames = array_keys($envs);
+// adding rbac migrations to autocreate files in database
 
 echo "Yii Application Initialization Tool v1.0\n\n";
 
@@ -65,12 +66,16 @@ if (!is_dir($rootPath)) {
 
 echo "\n  Start initialization ...\n\n";
 
+
 $files = getFileList($rootPath);
+
 if (isset($env['skipFiles'])) {
     $skipFiles = $env['skipFiles'];
     array_walk($skipFiles, function(&$value) use($env, $root) { $value = "$root/$value"; });
     $files = array_diff($files, array_intersect_key($env['skipFiles'], array_filter($skipFiles, 'file_exists')));
 }
+
+
 $all = false;
 foreach ($files as $file) {
     if (!copyFile($root, "environments/{$env['path']}/$file", $file, $all, $params)) {
@@ -78,7 +83,7 @@ foreach ($files as $file) {
     }
 }
 
-$callbacks = ['setCookieValidationKey', 'setWritable', 'setExecutable', 'createSymlink'];
+$callbacks = ['setCookieValidationKey', 'setJWTid', 'setWritable', 'setExecutable', 'createSymlink'];
 foreach ($callbacks as $callback) {
     if (!empty($env[$callback])) {
         $callback($root, $env[$callback]);
@@ -151,6 +156,7 @@ function copyFile($root, $source, $target, &$all, $params)
     return true;
 }
 
+
 function getParams()
 {
     $rawParams = [];
@@ -210,6 +216,19 @@ function setCookieValidationKey($root, $paths)
         $bytes = openssl_random_pseudo_bytes($length);
         $key = strtr(substr(base64_encode($bytes), 0, $length), '+/=', '_-.');
         $content = preg_replace('/(("|\')cookieValidationKey("|\')\s*=>\s*)(""|\'\')/', "\\1'$key'", file_get_contents($file));
+        file_put_contents($file, $content);
+    }
+}
+
+function setJWTid($root, $paths)
+{
+    foreach ($paths as $file) {
+        echo "   generate jwt id in $file\n";
+        $file = $root . '/' . $file;
+        $length = 12;
+        $bytes = openssl_random_pseudo_bytes($length);
+        $key = strtr(substr(base64_encode($bytes), 0, $length), '+/=', '_-.');
+        $content = preg_replace('/(("|\')jwt_id("|\')\s*=>\s*)(""|\'\')/', "\\1'$key'", file_get_contents($file));
         file_put_contents($file, $content);
     }
 }
