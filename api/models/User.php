@@ -1,6 +1,7 @@
 <?php
 namespace api\models;
 
+use api\components\TokenComponent;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -46,6 +47,17 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+// отбрасываем некоторые поля. Лучше всего использовать в случае наследования
+    public function fields()
+    {
+        $fields = parent::fields();
+
+        // удаляем небезопасные поля
+        unset($fields['auth_key'], $fields['password_hash'], $fields['password_reset_token']);
+
+        return $fields;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -70,12 +82,10 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        foreach (self::$users as $user) {
-            if ($user['id'] === (string) $token->getClaim('uid')) {
-                return new static($user);
-            }
+        if(!TokenComponent::TokenIsLive((String)$token)){
+            return null;
         }
-        return null;
+        return self::findIdentity($token->getClaim('uid'));
     }
 
     /**
@@ -87,6 +97,17 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findByUsername($username)
     {
         return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+    }
+
+    /**
+     * Finds user by email
+     *
+     * @param string $email
+     * @return static|null
+     */
+    public static function findByEmail($email)
+    {
+        return static::findOne(['email' => $email]);
     }
 
     /**
