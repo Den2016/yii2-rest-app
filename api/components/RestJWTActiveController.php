@@ -31,7 +31,6 @@ class RestJWTActiveController extends ActiveController
         $behaviors['authenticator'] = [
             'class' => JwtHttpBearerAuth::class,
             'optional' => [
-                'login',
             ],
         ];
         return $behaviors;

@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use api\components\TokenComponent;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -71,8 +72,10 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
-    }
+        if(!TokenComponent::TokenIsLive((String)$token)){
+            return null;
+        }
+        return self::findIdentity($token->getClaim('uid'));    }
 
     /**
      * Finds user by username

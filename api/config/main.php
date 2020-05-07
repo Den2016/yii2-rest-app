@@ -3,6 +3,7 @@
 use api\components\JwtValidationData;
 use sizeg\jwt\Jwt;
 use yii\helpers\ArrayHelper;
+use yii\rest\UrlRule;
 use yii\web\Response;
 
 $params = array_merge(
@@ -78,22 +79,31 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'cache' => 'cache' //Включаем кеширование
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',  // Подключаем файловое кэширование данных
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
-            //'enableStrictParsing' => true,
+            'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
                 [
-                    'class' => 'yii\rest\UrlRule',
+                    'class' => UrlRule::class,
                     'controller' => 'user',
                     'pluralize' => true,
                 ],
                 [
-                    'class' => 'yii\rest\UrlRule',
+                    'class' => UrlRule::class,
                     'controller' => 'login',
+                    'extraPatterns' => [
+                        'POST signup' => 'signup',
+                        'POST login' => 'login',
+                        'GET logout' => 'logout',
+                    ],
                     'pluralize' => false,
                 ],
             ],
