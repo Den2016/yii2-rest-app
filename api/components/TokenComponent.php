@@ -205,20 +205,22 @@ class TokenComponent
         $user->save();
         if (count($users) === 0) {
             // не было еще ни одного пользователя, первый зареганный юзер автоматом получает роль admin
-            $am=Yii::$app->authManager;
+            $am = Yii::$app->authManager;
             $role = $am->getRole('admin');
-            if(!$role){
+            if (!$role) {
                 $role = $am->createRole('admin');
-                $role->description="Администратор";
+                $role->description = "Администратор";
                 $am->add($role);
             }
-            $am->assign($role,$user->id);
+            $am->assign($role, $user->id);
         }
         $res = [];
-        $res['message'] = 'Пользователь зарегистрирован.'.Yii::$app->params['need_email_verification']?' Для входа необходимо подтвердить email':'';
+        $res['message'] = 'Пользователь зарегистрирован.';
+        $res['message'] .= Yii::$app->params['need_email_verification'] ? ' Для входа необходимо подтвердить email' : '';
         $res['need_email_verification'] = Yii::$app->params['need_email_verification'];
         return $res;
     }
+
     /**
      * Проверка жизнеспособности токена
      * Токен может быть валидным и верифицированным с точки зрения даты истечения и удостоверения принадлежности
