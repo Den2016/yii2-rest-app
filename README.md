@@ -25,3 +25,14 @@ backend часть, которая теперь заточена под rest api
 git clone https://github.com/Den2016/yii2-rest-app.git 
 ~~~
 
+TODO много чего
+
+
+### пример файла .htaccess для OpenServer
+
+~~~
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [L]
+~~~
