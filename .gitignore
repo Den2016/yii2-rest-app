@@ -44,3 +44,6 @@ phpunit.phar
 
 #ignore .htaccess files
 .htaccess
+
+#node modules
+node_modules
