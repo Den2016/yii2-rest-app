@@ -37,16 +37,23 @@ return [
             'class' => 'yii\web\Response',
             'on beforeSend' => function ($event) {
                 $response = $event->sender;
-                if ($response->data !== null) {
+                if ($response->data !== null && $event->sender->format !== 'html') {
                     $response->data = [
                         'success' => $response->isSuccessful,
-//                        'response' => get_object_vars($response),
                         'data' => $response->data,
                         'statusCode' => $response->statusCode,
-                        'statusText' => ArrayHelper::getValue($response,'statusText'),
+                        'statusText' => ArrayHelper::getValue($response, 'statusText'),
                     ];
-                    //$response->statusCode = 200;
+                } elseif ($event->sender->format === 'html' && $response->statusCode == 404) {
+                    $response->format = 'json';
+                    $response->data = [
+                        'success' => $response->isSuccessful,
+                        'data' => [],
+                        'statusCode' => $response->statusCode,
+                        'statusText' => ArrayHelper::getValue($response, 'statusText'),
+                    ];
                 }
+
             },
             'formatters' => [
                 Response::FORMAT_JSON => [
@@ -61,7 +68,7 @@ return [
             'identityClass' => 'common\models\User',
 //            'enableAutoLogin' => true,
             'enableSession' => false,
-           // 'identityCookie' => ['name' => '_identity-api', 'httpOnly' => true],
+            // 'identityCookie' => ['name' => '_identity-api', 'httpOnly' => true],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the api
