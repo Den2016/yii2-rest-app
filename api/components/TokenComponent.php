@@ -193,7 +193,7 @@ class TokenComponent
         $email = Yii::$app->request->post('email');
         $password = Yii::$app->request->post('password');
 
-        $users = User::findAll([]);
+        $users = User::find()->all();
         $user = new User();
         $user->username = $username;
         $user->email = $email;
