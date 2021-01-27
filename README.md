@@ -36,11 +36,6 @@ init или php init
 ./yii migrate 
 ~~~
 
-затем настройка прав
-~~~
-./yii maintenance/initrights
-./yii maintenance
-~~~
 
 TODO много чего
 
@@ -53,3 +48,70 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . index.php [L]
 ~~~
+
+Создаем простейшую точку входа. Для этого в api/config/main.php в components->urlManager->rules добавляем еще один массив, то есть urlManager будет выглядеть так
+~~~
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'enableStrictParsing' => true,
+            'showScriptName' => false,
+            'rules' => [
+                [
+                    'class' => UrlRule::class,
+                    'controller' => 'user',
+                    'pluralize' => true,
+                ],
+                [
+                    'class' => UrlRule::class,
+                    'controller' => 'login',
+                    'extraPatterns' => [
+                        'POST signup' => 'signup',
+                        'POST login' => 'login',
+                        'GET logout' => 'logout',
+                    ],
+                    'pluralize' => false,
+                ],
+                //добавленный массив
+                [
+                    'class' => UrlRule::class,
+                    'controller' => 'api',
+                    'pluralize' => false,
+                ],
+            ],
+        ],
+~~~
+
+далее в api/controllers создаем контроллер ApiController
+~~~
+<?php
+
+
+namespace api\controllers;
+
+
+use yii\rest\Controller;
+
+class ApiController extends Controller
+{
+    public function actionIndex(){
+        return [1,2,3,'test'];
+    }
+}
+~~~
+
+в результате при обращении к /api методом GET мы должны получить следующий JSON
+
+~~~
+{
+    "success": true,
+    "data": [
+        1,
+        2,
+        3,
+        "test"
+    ],
+    "statusCode": 200,
+    "statusText": "OK"
+}
+~~~
+
