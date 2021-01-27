@@ -22,7 +22,24 @@ backend часть, которая теперь заточена под rest api
 ## Установка
 
 ~~~ 
-git clone https://github.com/Den2016/yii2-rest-app.git 
+git clone https://github.com/Den2016/yii2-rest-app.git
+cd yii2-rest-app
+composer install
+init или php init
+~~~
+далее настраиваем соединение с базой данных в 
+/common/config/main-local.php
+далее
+~~~
+./yii migrate 1
+./yii migrate --migrationPath=@yii/rbac/migrations
+./yii migrate 
+~~~
+
+затем настройка прав
+~~~
+./yii maintenance/initrights
+./yii maintenance
 ~~~
 
 TODO много чего
