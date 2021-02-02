@@ -115,3 +115,4 @@ class ApiController extends Controller
 }
 ~~~
 
+форматирование ответа производится в api/config/main.php в обработчике on beforeSend
